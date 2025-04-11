@@ -1,0 +1,198 @@
+---
+title: "Apuntes y Cheat Sheet 2025-1."
+author:
+- rouhehe
+format:
+  html:
+    toc: true
+    toc-location: right
+    number-sections: true
+    theme: cosmo
+    fontsize: 1.1em
+    code-fold: true
+editor: visual
+---
+
+# Apuntes
+
+## Acerca de las filas, columnas y celdas
+
+Cada columna es una **variable**, o sea, la información que se desea tener.
+
+Cada fila es una **observación**, es decir, contiene los datos de un encuestado.
+
+Cada casilla o celda es un **dato**, entonces, es la información recibida de una variable, dado por un encuestado.
+
+Las celdas vacías son **NA** o **dato faltante**.
+
+Un encuestado no tiene que ser obligatoriamente una persona
+
+
+## Abrir archivos
+
+- Para **abrir** un archivo ".csv" debo usar la librería **reader**
+
+## Media
+
+Es un valor numérico que representa a todos los datos.
+
+## Mediana
+
+Es el dato que está ubicado en el centro de todos los datos ordenados.
+
+
+
+
+# Cheet Sheet
+
+## Instalar librerías
+- **reader:**
+```{r}
+#install.packages("readr", , repos = "https://cloud.r-project.org/")
+```
+
+## Datos de tablas
+
+- **numero filas y columnas**
+
+```{r}
+#dim(CSV) 
+
+#nrow(CSV)
+
+#ncol(CSV)
+```
+
+# Actividades
+
+## Semana 3
+
+### Lectura de datos diversos (Archivo EXCEL de Semana 1)
+
+Descargo las librería "readr"
+```{r, echo=FALSE, message=FALSE}
+#install.packages("readr", , repos = "https://cloud.r-project.org/")
+#install.packages("readxl", repos = "https://cloud.r-project.org/")
+library(readr)
+library(readxl)
+```
+
+```{r}
+DD<-read_csv("Datos Diversos - Sheet1.csv")
+DD
+```
+
+Observamos que se tienen 2814 *observaciones* y 23 *variables*
+
+```{r}
+dim(DD) # con esto vemos la cantidad filas y columnas
+
+nrow(DD) # cantidad de filas
+
+ncol(DD) # cantidad de columnas
+```
+
+Cargamos otra tabla (FAMOSOS1):
+
+```{r}
+datxl<- read_excel("FAMOSOS1.xlsx")
+```
+
+
+```{r}
+"Tabla de actividades"
+#table()
+
+"Moda de actividades"
+table(datxl$Género, datxl$Actividad)
+```
+
+Ejemplos de Preguntas usando datxl:
+
+1. Calcule cuántos personajes no se dedican al canto:
+
+```{r}
+table(datxl$Actividad)
+```
+
+En el excel hay 25 filas, pero al sumar las cantidades de table, se obtiene 24. L aepxlicacipon es, que hay famoso que no ha puesto sua ctividad y por lo tanto no sé nada de él.
+
+En la tabla se tiene las personas que con seguridad han puesto su actividad.
+
+Entonces, la cantidad de peresonas que respondieron son:
+
+(num personas) - (num personas que cantan)
+
+=> 17
+
+2. ¿Qupe porcentaje se dedica a la tecnología?
+
+```{r}
+table(datxl$Actividad)
+```
+
+Total: 24 famosos $\rightarrow$ 100%
+
+3 de tecnología $\rightarrow$ $\frac{100 \times 3}{24} = 12.5%$
+
+3. Indique la moda de la actividad de famosos: Es el valor que más se repite
+
+```{r}
+table(datxl$Actividad)
+```
+
+La moda es **CANTO**
+
+4. De los que cantan, ¿qué porcentaje son MUJERES?
+
+Aquí se usa ACTIVIDAD y GÉNERO
+```{r}
+TABLITA<-table(datxl$Actividad, datxl$Género)
+TABLITA
+```
+
+Primero ubicamos cuantos cantan (7)
+
+De esos 7, identificamos cuántos son mujeres (2).
+
+$\Longrightarrow \frac{100\times 2}{7} = 28.57$%
+
+5. ¿Cuántos son mujeres, con seguridad?
+
+```{r}
+table(datxl$Género)
+```
+
+Notamos que 23 personas han colocado su género y de ellos, 5 son mujeres.
+
+$\Longrightarrow \frac{100\times 5}{23} = 21.74$%
+
+6. De los hombres, ¿qué % cantan?
+
+```{r}
+table(datxl$Género, datxl$Actividad)
+```
+
+Hay 18 en total y 5 son los que cantan
+
+$\Longrightarrow \frac{100\times 5}{18} = 27.78$%
+
+7. Calcular la edad promedio
+
+```{r}
+mean(datxl$Edad)
+```
+
+No lo puede hallar, porque ene la columna EDAD, tal vez existe algunasc eldas vacías.
+
+Para solucionar el problema, se hará que se ignoren las celdas vacías de esa columna
+
+```{r}
+mean(datxl$Edad, na.rm=TRUE)
+```
+
+La respuesta redondeada a dos decimales:
+
+```{r}
+round(mean(datxl$Edad, na.rm=TRUE), 2)
+```
