@@ -196,3 +196,9 @@ La respuesta redondeada a dos decimales:
 ```{r}
 round(mean(datxl$Edad, na.rm=TRUE), 2)
 ```
+
+9. Calcular la mediana
+
+```{r}
+median(datxl$Edad, na.rm=TRUE)
+```
