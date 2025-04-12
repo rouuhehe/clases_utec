@@ -27,10 +27,9 @@ Las celdas vacías son **NA** o **dato faltante**.
 
 Un encuestado no tiene que ser obligatoriamente una persona
 
-
 ## Abrir archivos
 
-- Para **abrir** un archivo ".csv" debo usar la librería **reader**
+-   Para **abrir** un archivo ".csv" debo usar la librería **reader**
 
 ## Media
 
@@ -40,20 +39,19 @@ Es un valor numérico que representa a todos los datos.
 
 Es el dato que está ubicado en el centro de todos los datos ordenados.
 
-
-
-
 # Cheet Sheet
 
 ## Instalar librerías
-- **reader:**
+
+-   **reader:**
+
 ```{r}
 #install.packages("readr", , repos = "https://cloud.r-project.org/")
 ```
 
 ## Datos de tablas
 
-- **numero filas y columnas**
+-   **numero filas y columnas**
 
 ```{r}
 #dim(CSV) 
@@ -70,6 +68,7 @@ Es el dato que está ubicado en el centro de todos los datos ordenados.
 ### Lectura de datos diversos (Archivo EXCEL de Semana 1)
 
 Descargo las librería "readr"
+
 ```{r, echo=FALSE, message=FALSE}
 #install.packages("readr", , repos = "https://cloud.r-project.org/")
 #install.packages("readxl", repos = "https://cloud.r-project.org/")
@@ -98,7 +97,6 @@ Cargamos otra tabla (FAMOSOS1):
 datxl<- read_excel("FAMOSOS1.xlsx")
 ```
 
-
 ```{r}
 "Tabla de actividades"
 #table()
@@ -109,7 +107,7 @@ table(datxl$Género, datxl$Actividad)
 
 Ejemplos de Preguntas usando datxl:
 
-1. Calcule cuántos personajes no se dedican al canto:
+1.  Calcule cuántos personajes no se dedican al canto:
 
 ```{r}
 table(datxl$Actividad)
@@ -123,9 +121,9 @@ Entonces, la cantidad de peresonas que respondieron son:
 
 (num personas) - (num personas que cantan)
 
-=> 17
+=\> 17
 
-2. ¿Qupe porcentaje se dedica a la tecnología?
+2.  ¿Qupe porcentaje se dedica a la tecnología?
 
 ```{r}
 table(datxl$Actividad)
@@ -135,7 +133,7 @@ Total: 24 famosos $\rightarrow$ 100%
 
 3 de tecnología $\rightarrow$ $\frac{100 \times 3}{24} = 12.5%$
 
-3. Indique la moda de la actividad de famosos: Es el valor que más se repite
+3.  Indique la moda de la actividad de famosos: Es el valor que más se repite
 
 ```{r}
 table(datxl$Actividad)
@@ -143,9 +141,10 @@ table(datxl$Actividad)
 
 La moda es **CANTO**
 
-4. De los que cantan, ¿qué porcentaje son MUJERES?
+4.  De los que cantan, ¿qué porcentaje son MUJERES?
 
 Aquí se usa ACTIVIDAD y GÉNERO
+
 ```{r}
 TABLITA<-table(datxl$Actividad, datxl$Género)
 TABLITA
@@ -157,7 +156,7 @@ De esos 7, identificamos cuántos son mujeres (2).
 
 $\Longrightarrow \frac{100\times 2}{7} = 28.57$%
 
-5. ¿Cuántos son mujeres, con seguridad?
+5.  ¿Cuántos son mujeres, con seguridad?
 
 ```{r}
 table(datxl$Género)
@@ -167,7 +166,7 @@ Notamos que 23 personas han colocado su género y de ellos, 5 son mujeres.
 
 $\Longrightarrow \frac{100\times 5}{23} = 21.74$%
 
-6. De los hombres, ¿qué % cantan?
+6.  De los hombres, ¿qué % cantan?
 
 ```{r}
 table(datxl$Género, datxl$Actividad)
@@ -177,7 +176,7 @@ Hay 18 en total y 5 son los que cantan
 
 $\Longrightarrow \frac{100\times 5}{18} = 27.78$%
 
-7. Calcular la edad promedio
+7.  Calcular la edad promedio
 
 ```{r}
 mean(datxl$Edad)
@@ -197,7 +196,7 @@ La respuesta redondeada a dos decimales:
 round(mean(datxl$Edad, na.rm=TRUE), 2)
 ```
 
-9. Calcular la mediana
+9.  Calcular la mediana
 
 ```{r}
 median(datxl$Edad, na.rm=TRUE)
