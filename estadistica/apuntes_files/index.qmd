@@ -133,15 +133,23 @@ sum(is.na(datxl))
 
 Ahora vemos los NAs de Datos Diversos
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning = FALSE}
 DD <- read.csv("Datos Diversos - Sheet1.csv")
+DD1 <- read_excel("Datos Diversos.xlsx")
 ```
+
+```{r}
+sum(is.na(DD1))
+```
+
 
 ```{r}
 sum(is.na(DD))
 ```
 
-
+```{r}
+dim(DD)
+```
 
 ## Tablas de Frecuencia
 
