@@ -1,0 +1,115 @@
+---
+title: "Cheat Sheet 2025-1."
+author:
+- rouhehe
+format:
+  html:
+    toc: true
+    toc-location: right
+    number-sections: true
+    theme: cosmo
+    fontsize: 1.1em
+    code-fold: true
+    math: mathjax
+editor: visual
+---
+# Cheet Sheet
+
+## Instalar librerías
+
+-   **reader:**
+
+```{r}
+#install.packages("readr", , repos = "https://cloud.r-project.org/")
+library(reader)
+```
+
+- **readxl**
+
+```{r}
+#install.packages("readxl", , repos = "https://cloud.r-project.org/")
+library(readxl)
+```
+
+- **crayon**
+```{r}
+#install.packages("crayon", repos = "https://cloud.r-project.org/")
+library(crayon)
+```
+
+
+- **tidyr**
+```{r}
+#install.packages("tidyr", repos = "https://cloud.r-project.org/")
+library(tydyr)
+```
+
+- **tydyverse**
+```{r}
+#install.packages("tidyverse", repos = "https://cloud.r-project.org/")
+library(tydyverse)
+```
+
+- **ggplot2**
+```{r}
+#install.packages("ggplot2", repos = "https://cloud.r-project.org/")
+library(ggplot2)
+```
+
+
+## Datos de tablas
+
+-   **numero filas y columnas**
+
+```{r}
+#dim(CSV) 
+#nrow(CSV)
+#ncol(CSV)
+```
+
+- **calcular promedio, mediana y moda**
+
+```{r}
+#mean(CSV, na.rm=TRUE) 
+#median(CSV, na.rm=TRUE)
+#mfv(CSV, na.rm=TRUE)
+```
+
+_ **ordenar datos**
+
+```{r}
+valores <- c(5, NA, 8, 1, 4)
+sort(valores) #esto ya elimina los NA
+sort(valores, decreasing = TRUE)
+```
+## Textos en HTML
+
+<p style="color: red;">Eso tilin si fuera comunista</p>
+<p style="color: blue;">Eso tilin si fuera pitufin</p>
+<p style="color: green;">Eso tilin si fuera shrek</p>
+
+Para colocar el texto de mates en el centro:
+
+### Notación:
+
+$$ 
+\overline{x}
+$$
+
+### Letras Griegas:
+
+- Constantes:
+$$
+\alpha,\theta,\beta,\sigma,\Delta,\phi,\Phi,\gamma,\iota
+$$
+
+- Desviación estandar
+$$
+\sigma_1, \sigma_2,\dots,\sigma_n
+$$
+
+## Textos en qmd
+
+```{r}
+#cat(red("Eso tilin"))
+```

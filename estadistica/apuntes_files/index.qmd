@@ -1,5 +1,5 @@
 ---
-title: "Apuntes y Cheat Sheet 2025-1."
+title: "Apuntes y actividades 2025-1."
 author:
 - rouhehe
 format:
@@ -14,6 +14,14 @@ editor: visual
 ---
 
 # Apuntes
+
+```{r}
+library(readxl)
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
+datxl <- read_excel("FAMOSOS1.xlsx")
+```
 
 ## Acerca de las filas, columnas y celdas
 
@@ -39,35 +47,113 @@ Es un valor numérico que representa a todos los datos.
 
 Es el dato que está ubicado en el centro de todos los datos ordenados.
 
-# Cheet Sheet
+En un conjunto par de datos, la mediana es el promedio de los dos centrales, ejemplo:
 
-## Instalar librerías
+Datos: $$ 1, 2, 4, 5$$
 
--   **reader:**
+Mediana: $$ 2 + 4 = 6 \rightarrow 6 \div 2 = 3 $$
 
+## Descriptores Numéricos
+
+### Descriptores Resumidos
+
+Sea una colección de notas, se pone como un vector, dentro de C(...)
 ```{r}
-#install.packages("readr", , repos = "https://cloud.r-project.org/")
+X <- c(8, NA, 6, 6, 4, 10, 8, 20 , 16, NA, 16, 8, 16, 16, 4, 6)
+summary(X)
 ```
 
-## Datos de tablas
+Summary me da valores como:
 
--   **numero filas y columnas**
+- Val. Mínimo
+- Primer Cuartil
+- Mediana
+- Promedio
+- Tercer Cuartil
+- Val. Máximo
+- Vals. Nulos
+
+Interpretaciones:
+
+- Mediana: La mayor nota del 50% de los que tienen menor nota es 8. O también, la menor nota del 50% de los que tienen mayor nota es 8.
+
+- Cuartil 1: La mayor nota del 25% de los que tienen **menores** notas es 6. O también, la menor nota del 75% de los que tienen **mayores** nota es 6.
+
+- Cuartil 3: La mayor nota del 75% de los que tienen **menores** notas es 16. O también, la menor nota del 25% de los que tienen **mayores** notas.
+
+PROBLEMITA:
+
+- ¿Entre que valores están las notas de los alumnos que se encuentran en el 50% central?
+
+Entre 6 y 16 (Q1 y Q3).
+
+- ¿Entre el 40% central?
+
+Para hallar esto, hay un código jeje
+
+**Cuantiles**
+Los cuantiles sirven para hallar cualquier porcentaje
 
 ```{r}
-#dim(CSV) 
-
-#nrow(CSV)
-
-#ncol(CSV)
+quantile(X, 0.3, na.rm=TRUE)
+quantile(X, 0.7, na.rm=TRUE)
 ```
+
+Como se hace:
+
+1. Calculamos el primer 30%
+2. Le sumamos los 40%, esto pq es lo q queremos encontrar 
+3. Calculamos el 70% (30 + 40 = 70)
+
+En un archivo datxl;
+
+```{r}
+quantile(datxl$Actividad, 0.5, type=3, na.rm=T)
+```
+
+## Acerca de los NAs
+
+Vemos los NA de un data.frame
+
+```{r}
+is.na(datxl)
+```
+
+Este código genera un nuevo data frame pero con valores booleanos que representan si el dato es NA o no.
+
+Contamos los valores NA
+```{r}
+table(is.na(datxl))
+```
+
+Otra alternativa:
+```{r}
+sum(is.na(datxl))
+```
+
+Ahora vemos los NAs de Datos Diversos
+
+```{r, echo=FALSE}
+DD <- read.csv("Datos Diversos - Sheet1.csv")
+```
+
+```{r}
+sum(is.na(DD))
+```
+
+
+
+## Tablas de Frecuencia
+
+## Histograma
+
+
 
 # Actividades
 
 ## Semana 3
 
 ### Lectura de datos diversos (Archivo EXCEL de Semana 1)
-
-Descargo las librería "readr"
 
 ```{r, echo=FALSE, message=FALSE}
 #install.packages("readr", , repos = "https://cloud.r-project.org/")
@@ -76,14 +162,14 @@ library(readr)
 library(readxl)
 ```
 
-```{r}
+```{r, echo=TRUE}
 DD<-read_csv("Datos Diversos - Sheet1.csv")
 DD
 ```
 
 Observamos que se tienen 2814 *observaciones* y 23 *variables*
 
-```{r}
+```{r, echo=TRUE}
 dim(DD) # con esto vemos la cantidad filas y columnas
 
 nrow(DD) # cantidad de filas
