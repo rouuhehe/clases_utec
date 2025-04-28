@@ -1,4 +1,5 @@
 ---
+t---
 title: "Cheat Sheet 2025-1."
 author:
 - rouhehe
@@ -13,6 +14,7 @@ format:
     math: mathjax
 editor: visual
 ---
+
 # Cheet Sheet
 
 ## Instalar librerías
@@ -24,38 +26,40 @@ editor: visual
 library(reader)
 ```
 
-- **readxl**
+-   **readxl**
 
 ```{r}
 #install.packages("readxl", , repos = "https://cloud.r-project.org/")
 library(readxl)
 ```
 
-- **crayon**
+-   **crayon**
+
 ```{r}
 #install.packages("crayon", repos = "https://cloud.r-project.org/")
 library(crayon)
 ```
 
+-   **tidyr**
 
-- **tidyr**
 ```{r}
 #install.packages("tidyr", repos = "https://cloud.r-project.org/")
 library(tydyr)
 ```
 
-- **tydyverse**
+-   **tydyverse**
+
 ```{r}
 #install.packages("tidyverse", repos = "https://cloud.r-project.org/")
 library(tydyverse)
 ```
 
-- **ggplot2**
+-   **ggplot2**
+
 ```{r}
 #install.packages("ggplot2", repos = "https://cloud.r-project.org/")
 library(ggplot2)
 ```
-
 
 ## Datos de tablas
 
@@ -67,7 +71,7 @@ library(ggplot2)
 #ncol(CSV)
 ```
 
-- **calcular promedio, mediana y moda**
+-   **calcular promedio, mediana y moda**
 
 ```{r}
 #mean(CSV, na.rm=TRUE) 
@@ -75,18 +79,33 @@ library(ggplot2)
 #mfv(CSV, na.rm=TRUE)
 ```
 
-_ **ordenar datos**
+\_ **ordenar datos**
 
 ```{r}
 valores <- c(5, NA, 8, 1, 4)
 sort(valores) #esto ya elimina los NA
 sort(valores, decreasing = TRUE)
 ```
+
 ## Textos en HTML
 
-<p style="color: red;">Eso tilin si fuera comunista</p>
-<p style="color: blue;">Eso tilin si fuera pitufin</p>
-<p style="color: green;">Eso tilin si fuera shrek</p>
+<p style="color: red;">
+
+Eso tilin si fuera comunista
+
+</p>
+
+<p style="color: blue;">
+
+Eso tilin si fuera pitufin
+
+</p>
+
+<p style="color: green;">
+
+Eso tilin si fuera shrek
+
+</p>
 
 Para colocar el texto de mates en el centro:
 
@@ -98,18 +117,24 @@ $$
 
 ### Letras Griegas:
 
-- Constantes:
-$$
-\alpha,\theta,\beta,\sigma,\Delta,\phi,\Phi,\gamma,\iota
-$$
+-   Constantes: $$
+    \alpha,\theta,\beta,\sigma,\Delta,\phi,\Phi,\gamma,\iota
+    $$
 
-- Desviación estandar
-$$
-\sigma_1, \sigma_2,\dots,\sigma_n
-$$
+-   Desviación estandar $$
+    \sigma_1, \sigma_2,\dots,\sigma_n
+    $$
 
 ## Textos en qmd
 
 ```{r}
 #cat(red("Eso tilin"))
+```
+
+# Frecuencias
+
+Formamos una tabla de frecuencias con la actividad de todos los personajes famosos de la data.
+
+```{r}
+fams <- read_excel("C:\Users\yarit\OneDrive\Documentos\GitHub\clases_utec\estadistica\apuntes_files\FAMOSOS1.xlsx")
 ```

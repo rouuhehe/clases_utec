@@ -20,7 +20,7 @@ library(readxl)
 library(tidyr)
 library(tidyverse)
 library(ggplot2)
-datxl <- read_excel("FAMOSOS1.xlsx")
+datxl <- read_excel("C:\\Users\\yarit\\OneDrive\\Documentos\\GitHub\\clases_utec\\estadistica\\apuntes_files\\FAMOSOS1.xlsx")
 ```
 
 ## Acerca de las filas, columnas y celdas
@@ -58,6 +58,7 @@ Mediana: $$ 2 + 4 = 6 \rightarrow 6 \div 2 = 3 $$
 ### Descriptores Resumidos
 
 Sea una colección de notas, se pone como un vector, dentro de C(...)
+
 ```{r}
 X <- c(8, NA, 6, 6, 4, 10, 8, 20 , 16, NA, 16, 8, 16, 16, 4, 6)
 summary(X)
@@ -65,34 +66,33 @@ summary(X)
 
 Summary me da valores como:
 
-- Val. Mínimo
-- Primer Cuartil
-- Mediana
-- Promedio
-- Tercer Cuartil
-- Val. Máximo
-- Vals. Nulos
+-   Val. Mínimo
+-   Primer Cuartil
+-   Mediana
+-   Promedio
+-   Tercer Cuartil
+-   Val. Máximo
+-   Vals. Nulos
 
 Interpretaciones:
 
-- Mediana: La mayor nota del 50% de los que tienen menor nota es 8. O también, la menor nota del 50% de los que tienen mayor nota es 8.
+-   Mediana: La mayor nota del 50% de los que tienen menor nota es 8. O también, la menor nota del 50% de los que tienen mayor nota es 8.
 
-- Cuartil 1: La mayor nota del 25% de los que tienen **menores** notas es 6. O también, la menor nota del 75% de los que tienen **mayores** nota es 6.
+-   Cuartil 1: La mayor nota del 25% de los que tienen **menores** notas es 6. O también, la menor nota del 75% de los que tienen **mayores** nota es 6.
 
-- Cuartil 3: La mayor nota del 75% de los que tienen **menores** notas es 16. O también, la menor nota del 25% de los que tienen **mayores** notas.
+-   Cuartil 3: La mayor nota del 75% de los que tienen **menores** notas es 16. O también, la menor nota del 25% de los que tienen **mayores** notas.
 
 PROBLEMITA:
 
-- ¿Entre que valores están las notas de los alumnos que se encuentran en el 50% central?
+-   ¿Entre que valores están las notas de los alumnos que se encuentran en el 50% central?
 
 Entre 6 y 16 (Q1 y Q3).
 
-- ¿Entre el 40% central?
+-   ¿Entre el 40% central?
 
 Para hallar esto, hay un código jeje
 
-**Cuantiles**
-Los cuantiles sirven para hallar cualquier porcentaje
+**Cuantiles** Los cuantiles sirven para hallar cualquier porcentaje
 
 ```{r}
 quantile(X, 0.3, na.rm=TRUE)
@@ -101,9 +101,9 @@ quantile(X, 0.7, na.rm=TRUE)
 
 Como se hace:
 
-1. Calculamos el primer 30%
-2. Le sumamos los 40%, esto pq es lo q queremos encontrar 
-3. Calculamos el 70% (30 + 40 = 70)
+1.  Calculamos el primer 30%
+2.  Le sumamos los 40%, esto pq es lo q queremos encontrar
+3.  Calculamos el 70% (30 + 40 = 70)
 
 En un archivo datxl;
 
@@ -122,11 +122,13 @@ is.na(datxl)
 Este código genera un nuevo data frame pero con valores booleanos que representan si el dato es NA o no.
 
 Contamos los valores NA
+
 ```{r}
 table(is.na(datxl))
 ```
 
 Otra alternativa:
+
 ```{r}
 sum(is.na(datxl))
 ```
@@ -142,7 +144,6 @@ DD1 <- read_excel("Datos Diversos.xlsx")
 sum(is.na(DD1))
 ```
 
-
 ```{r}
 sum(is.na(DD))
 ```
@@ -153,9 +154,90 @@ dim(DD)
 
 ## Tablas de Frecuencia
 
-## Histograma
+### Frecuencias absolutas:
 
+Para esta parte, crearemos una tabla estadística para **variable cualitativa**
 
+$f_i$: frecuencias absoluta, es decir, es un conteo de cada elemento de la primera columna de la tabla.
+
+$h_i$: frecuencia relativa =\> $\frac{f_i}{h_i}$
+
+$x_i$: marca de clase, es el valor del medio de un intervalo =\> $\frac{Der + Izq}{2}$
+
+### Histograma
+
+Para hacer un histograma
+
+```{r}
+hist(datxl$Estatura, labels=TRUE, breaks = 5)
+```
+
+Para hacer la tabla de frecuencia (de momento) nos guiamos del histograma.
+
+**Intervalos** se ven desde el histograma al igual que los $f_i$
+
+### Tipo de variable
+
+-   Usando *glimpse*
+
+```{r}
+glimpse(datxl)
+```
+
+-   Usando *class*
+
+Este te lo da por variable
+
+```{r}
+class(datxl$Actividad)
+```
+
+-   Usando *str*
+
+```{r}
+str(datxl)
+```
+
+## Limpieza de Datos
+
+```{r}
+DF <- read_csv("Datos Diversos - Sheet2.csv")
+DF
+```
+
+Antes, debemos hacer una copia de la original que es en la que voy a ir haciendo los cambios
+
+```{r}
+DFP <- DF
+DFP
+```
+
+1. Primero verificar los tipos
+Podemos hacer typecasting en caso el tipo sea incorrecto
+
+- Convertimos **ciclo** a cualitativo: 
+```{r}
+DFP$Ciclo <- as.character(DFP$Ciclo)
+DFP
+```
+
+```{r}
+#DFP$Edad <- as.factor(DFP$Edad) solo por si no funciona
+DFP$Edad <- as.numeric(DFP$Edad)
+DFP
+```
+
+```{r}
+DFP$"Peso (kg)" <- as.factor(DFP$"Peso (kg)")
+DFP$"Peso (kg)" <- as.numeric(DFP$"Peso (kg)")
+DFP
+```
+
+Para cambiar el nombre de una columna de usa:
+```{r}
+DFP <- rename(DFP, Estatura_cm="Estatura (cm)", Peso_kg="Peso (kg)")
+DFP
+```
 
 # Actividades
 
@@ -295,3 +377,40 @@ round(mean(datxl$Edad, na.rm=TRUE), 2)
 ```{r}
 median(datxl$Edad, na.rm=TRUE)
 ```
+
+## Semana 5
+
+### Función Apply
+
+Aplic auna función para columnas o para filas
+
+**apply(mat, 1:f o 2:c ,funct)**
+
+Primero creo la matriz "mat":
+
+```{r}
+mat <- is.na(datxl)
+mat
+```
+
+Utilizando apply, podremos ver la cantidad de NAs por variable
+
+```{r}
+apply(mat, 2, sum) 
+```
+
+Asimismo, podremos ver la cantidad de NAs por unidad muestral
+
+```{r}
+apply(mat, 1, sum) 
+```
+
+-   useNA = "always" Al usar table cuenta también a todos los NA
+
+## Semana 6
+
+## Semana 7
+
+## Semana 8
+
+## Semana 9
